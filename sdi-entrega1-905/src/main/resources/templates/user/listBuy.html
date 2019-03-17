@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+
+<body>
+	<!-- Barra de Navegación superior -->
+	<nav th:replace="fragments/nav" />
+	<div class="container">
+		<h2 th:text="#{comprar.titulo}">Ofertas compradas</h2>
+		<p th:text="#{comprar.texto}">A continuación aparecerán las ofertas compradas por el usuario:</p>
+		<div class="table-responsive">
+			<table class="table table-hover" th:fragment="tableBuyOffers"
+				id="tableBuyOffers">
+				<thead>
+					<tr>
+						<th class="col-md-1" th:text="#{tabla.titulo}">Título</th>
+						<th th:text="#{tabla.descripcion}">Descripción</th>
+						<th th:text="#{tabla.fecha}">Fecha</th>
+						<th th:text="#{tabla.precio}">Precio</th>
+						<th th:text="#{tabla.vendedor}">Vendedor</th>
+						<th class="col-md-1"></th>
+						<th class="col-md-1"></th>
+						<th class="col-md-1"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="offer : ${offerList}">
+						<td th:text="${offer.title}">1</td>
+						<td th:text="${offer.description}"></td>
+						<td th:text="${offer.date}"></td>
+						<td th:text="${offer.price}"></td>
+						<td th:text="${offer.creator.email}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<footer th:replace="fragments/pagination" />
+	</div>
+	<footer th:replace="fragments/footer" />
+</body>
+
+</html>

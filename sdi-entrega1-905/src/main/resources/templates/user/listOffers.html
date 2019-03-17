@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+
+<body>
+	<!-- Barra de Navegación superior -->
+	<nav th:replace="fragments/nav" />
+	<div class="container">
+		<h2 th:text="#{oferta.titulo}">Ofertas creadas</h2>
+		<p th:text="#{oferta.texto}">A continuación aparecerán las ofertas creadas por el usuario:</p>
+		<div class="table-responsive">
+			<table class="table table-hover" th:fragment="tableOwnOffers"
+				id="tableOwnOffers">
+				<thead>
+					<tr>
+						<th class="col-md-1" th:text="#{tabla.titulo}">Título</th>
+						<th th:text="#{tabla.descripcion}">Descripción</th>
+						<th th:text="#{tabla.fecha}">Fecha</th>
+						<th th:text="#{tabla.precio}">Precio</th>
+						<th class="col-md-1"></th>
+						<th class="col-md-1"></th>
+						<th class="col-md-1"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="offer : ${offerList}">
+						<td th:text="${offer.title}">1</td>
+						<td th:text="${offer.description}"></td>
+						<td th:text="${offer.date}"></td>
+						<td th:text="${offer.price}"></td>
+						<td><a th:text="#{tabla.eliminar}" th:href="${'/offer/delete/' + offer.id}">Eliminar</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<footer th:replace="fragments/pagination" />
+	</div>
+	<footer th:replace="fragments/footer" />
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+/*C12*/SET SCHEMA PUBLIC
+alter table offer drop constraint FKketnoqdi3j8fvf9vpphy84bik
+alter table offer drop constraint FK3k1sisy06pl101uknvy2qp0x9
+drop table offer if exists
+drop table user if exists
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table offer (id bigint not null, date timestamp, description varchar(255), price double not null, sold boolean, title varchar(255), vip boolean, buyer_id bigint, creator_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), money double not null, name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table offer add constraint FKketnoqdi3j8fvf9vpphy84bik foreign key (buyer_id) references user
+alter table offer add constraint FK3k1sisy06pl101uknvy2qp0x9 foreign key (creator_id) references user
+INSERT INTO USER VALUES(1,'admin@email.com','Sistema',999.0E0,'Administrador','$2a$10$lGDmpxRSz5WjOPKBgHLbt.7jMgBYBHxwB1WiGEm5otSnDR0ze7JUK','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'andrei@mail.com','Manu',100.0E0,'Andrei','$2a$10$B3TFLXlt8KicF5hPHa/SWOqZcTFxXrYV1SJoVYmaDbJtcy4qBJdd2','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'rosario@mail.com','Palacios',100.0E0,'Rosario','$2a$10$cLUgUZSA07qDVLnzV890VezS2VP8cYayLQBOsX.56K/oU/HcZ7V8K','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'david@mail.com','Garcia',100.0E0,'David','$2a$10$/esiwuFzVZZedRc75LcipOcgeyUqvS3paCR.TG4pKmGpRHP1/0ZX2','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'cova@mail.com','Arroyo',100.0E0,'Cova','$2a$10$OPeC6N6mZhjBWbwcYhVZVe.QaD5zZubwav1.nUJ3fTdkpBgSFD77a','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'raul@mail.com','Gonz\u00e1lez Blanco',100.0E0,'Raul','$2a$10$GHzMXYELy8X.7OXGcvbLMe7V2Q3.lvsuApOMPQGTWcNvsVkipXDJm','ROLE_USER')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO OFFER VALUES(7,'2019-03-17 22:49:37.220000','Coche de segunda mano con 200k kilometros, diesel, a\u00f1o 2007 color rojo pasi\u00f3n. Se regalan neumaticos de invierno',6000.0E0,FALSE,'Ford focus tdi',FALSE,NULL,2)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO OFFER VALUES(8,'2019-03-17 22:49:37.224000','Coche de segunda mano con 200k kilometros, diesel, a\u00f1o 2007 color rojo pasi\u00f3n. Se regalan neumaticos de invierno',6000.0E0,TRUE,'Renault clio tdi',FALSE,3,2)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO OFFER VALUES(9,'2019-03-17 22:49:37.226000','Coche de segunda mano con 200k kilometros, diesel, a\u00f1o 2007 color rojo pasi\u00f3n. Se regalan neumaticos de invierno',10.0E0,TRUE,'Sara picaso tdi',FALSE,3,2)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO OFFER VALUES(10,'2019-03-17 22:49:37.229000','Inmejorable kit para la supervivencia en ambientes hostiles.',80.0E0,FALSE,'Kit de supervivencia',FALSE,NULL,3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+INSERT INTO OFFER VALUES(11,'2019-03-17 22:49:37.232000','Mochila del ejercito sovietico probada en ambientes siberianos.',1000.0E0,TRUE,'Mochila Kargo',FALSE,4,3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 12
+COMMIT
+INSERT INTO OFFER VALUES(12,'2019-03-17 22:49:37.235000','Pistola de emergencia apta para todo tipo de ambientes, luz naranja.',12.0E0,TRUE,'Pistola de bengalas modelo k67',FALSE,4,3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 13
+COMMIT
+INSERT INTO OFFER VALUES(13,'2019-03-17 22:49:37.238000','Juego ps3 precintado edici\u00f3n coleccionista.',35.0E0,FALSE,'Tekken 6',FALSE,NULL,4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 14
+COMMIT
+INSERT INTO OFFER VALUES(14,'2019-03-17 22:49:37.242000','La mayor genialidad de sony en 2018.',69.0E0,TRUE,'God of war 4',FALSE,5,4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 15
+COMMIT
+INSERT INTO OFFER VALUES(15,'2019-03-17 22:49:37.244000','DjMario sube el camino',45.0E0,TRUE,'Fifa 19',FALSE,5,4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 16
+COMMIT
+INSERT INTO OFFER VALUES(16,'2019-03-17 22:49:37.249000','Adopta perros, no compres. Precio real gratis.',180.0E0,FALSE,'Husky ojos azules y verdes',FALSE,NULL,5)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 17
+COMMIT
+INSERT INTO OFFER VALUES(17,'2019-03-17 22:49:37.253000','Adopta perros, no compres. Precio real gratis.',200.0E0,TRUE,'Alaskan Malamute hembra',FALSE,6,5)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 18
+COMMIT
+INSERT INTO OFFER VALUES(18,'2019-03-17 22:49:37.256000','Adopta gatos, no compres. Precio real gratis.',10.0E0,TRUE,'Gato egipcio, 4 meses',FALSE,6,5)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 19
+COMMIT
+INSERT INTO OFFER VALUES(19,'2019-03-17 22:49:37.259000','Cr\u00f3nica del asesino de reyes: primer d\u00eda es una novela de fantas\u00eda \u00e9pica, perteneciente a la serie Cr\u00f3nica del Asesino de Reyes, escrita por Patrick Rothfus.',20.0E0,FALSE,'El nombre del viento',FALSE,NULL,6)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 20
+COMMIT
+INSERT INTO OFFER VALUES(20,'2019-03-17 22:49:37.262000','Poco m\u00e1s hay que decir',27000.0E0,TRUE,'El se\u00f1or de los anillos versi\u00f3n original',FALSE,2,6)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 21
+COMMIT
+INSERT INTO OFFER VALUES(21,'2019-03-17 22:49:37.264000','Si eres sensible a la muerte no lo compres.',19.0E0,TRUE,'Juego de tronos',FALSE,2,6)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 22
+COMMIT
+DISCONNECT
+/*C13*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C14*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C15*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C16*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C17*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C18*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C19*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C20*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C21*/SET SCHEMA PUBLIC
+DISCONNECT

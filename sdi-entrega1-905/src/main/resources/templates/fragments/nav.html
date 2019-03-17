@@ -1,0 +1,79 @@
+<!-- nav.html -->
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#myNavbar">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<img src="/img/student-48.png" alt="logo" />
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
+				<li><a href="/home">Home</a></li>
+				<li id="marks-menu" class="dropdown"
+					sec:authorize="hasRole('ROLE_ADMIN')"><a
+					class="
+					dropdown-toggle" data-toggle="dropdown" href=""
+					th:text="#{nav.users}">Gestión de usuarios <span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="/admin/listUsers" th:text="#{nav.see.users}">Ver
+								Usuarios</a></li>
+					</ul></li>
+				<li id="marks-menu" class="dropdown"
+					sec:authorize="isAuthenticated()"><a
+					class="
+					dropdown-toggle" data-toggle="dropdown" href=""
+					th:text="#{nav.offers}">Gestión de ofertas <span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="/offer/add" th:text="#{nav.add}">Añadir
+								oferta</a></li>
+						<li><a href="/user/listOffers" th:text="#{nav.creadas}">Ver
+								ofertas creadas</a></li>
+						<li><a href="/user/listBuy" th:text="#{nav.compradas}">Ver
+								ofertas compradas</a></li>
+					</ul></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li sec:authorize="isAuthenticated()"><p
+						th:text="'Email: ' + ${session.user.email}" th:inline="text"
+						style="margin-right: 10px; color: yellow; font-size: 16; margin-top: 15px"></p></li>
+				<li sec:authorize="isAuthenticated()"><p id="money" th:inline="text"
+						th:text="${session.money} + ' €'"
+						style="margin-right: 20px; color: yellow; font-size: 16; margin-top: 15px"></p></li>
+				<li class="dropdown"><a id="btnLanguage" href="#"
+					class="dropdown-toggle" data-toggle="dropdown" role="button"
+					aria-haspopup="true" aria-expanded="false"> <span
+						th:text="#{language.change}"></span> <span class="caret"></span>
+				</a>
+					<ul id="languageDropdownMenuButton" class="dropdown-menu">
+						<li><a id="btnEnglish" value="EN"> <img
+								th:src="@{/img/if_uk_flag.png}"
+								style="border: 0; float: left; margin-right: 15px" /> <span
+								th:text="#{language.en}">Inglés</span>
+						</a></li>
+						<li><a id="btnSpanish" value="ES"> <img
+								th:src="@{/img/if_spain_flag.png}"
+								style="border: 0; float: left; margin-right: 15px" /> <span
+								th:text="#{language.es}">Español</span>
+						</a></li>
+					</ul></li>
+				<li sec:authorize="!isAuthenticated()"><a href="/signup"
+					th:text="#{signup.message}"> <span
+						class="glyphicon glyphicon-user"></span> Regístrate
+				</a></li>
+				<li sec:authorize="!isAuthenticated()"><a href="/login"
+					th:text="#{login.message}"> <span
+						class="glyphicon glyphicon-log-in"></span> Identifícate
+				</a></li>
+				<li sec:authorize="isAuthenticated()"><a href="/logout"> <span
+						th:text=#{nav.logout}></span>
+				</a></li>
+			</ul>
+		</div>
+
+	</div>
+</nav>
